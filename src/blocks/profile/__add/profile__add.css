@@ -22,9 +22,10 @@
 
 @media screen and (max-width: 1279px) {
     .profile__add {
-        width: calc(150 / 1280 * 100vw);
-        height: calc(50/ 1280 * 100vw);
-        background-size: calc(22 / 1280 * 100vw) calc(22 / 1280 * 100vw);
+        width: clamp(100px, 150 / 1280 * 100vw, 150px);
+        height: clamp(35px, 50 / 1280 * 100vw, 50px);
+        background-size: clamp(16px, 22 / 1280 * 100vw, 22px)
+            clamp(16px, 22 / 1280 * 100vw, 22px);
     }
 }
 
@@ -40,7 +41,7 @@
 @media screen and (max-width: 425px) {
     .profile__add {
         width: 100%;
-        height: calc((100vw - 38px)*(50 / 282));
+        height: calc((100vw - 38px) * (50 / 282));
         margin-top: 0;
     }
 }

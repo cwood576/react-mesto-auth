@@ -1,0 +1,8 @@
+@media screen and (max-width: 425px) {
+    .header__container_active {
+        opacity: 1;
+        min-height: 142px;
+        max-height: 150px;
+        pointer-events: all;
+    }
+}

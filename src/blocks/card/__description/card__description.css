@@ -25,15 +25,13 @@
 
 @media screen and (max-width: 768px) {
     .card__description {
-        height: calc(79 / 768 * 100vw);
+        height: clamp(50px, 79 / 768 * 100vw, 55px);
         margin: 0 calc(15 / 768 * 100vw) 0 calc(21 / 768 * 100vw);
     }
 }
 
 @media screen and (max-width: 425px) {
     .card__description {
-        /* height: calc(79 / 320 * (100vw + 16px));
-        margin: 0 calc(15 / 320 * 100vw) 0 calc(21 / 320 * 100vw); */
         height: 79px;
         margin: 0 15px 0 21px;
     }

@@ -1,0 +1,9 @@
+.sign-in__button {
+    height: clamp(46px, 2vw, 50px);
+    width: 100%;
+    background-color: #ffffff;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+    margin-top: clamp(143px, 22vw, 186px);
+}

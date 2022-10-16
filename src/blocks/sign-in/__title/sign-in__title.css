@@ -1,0 +1,9 @@
+.sign-in__title {
+    color: #ffffff;
+    font-size: clamp(20px, 10vw, 24px);
+    line-height: clamp(24px, 10vw, 29px);
+    font-weight: 900;
+    padding-bottom: clamp(40px, 10vw, 50px);
+    padding-top: clamp(40px, 10vw, 60px);
+    margin: 0;
+}

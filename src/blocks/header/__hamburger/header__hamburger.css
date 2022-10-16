@@ -1,0 +1,16 @@
+.header__hamburger {
+    display: none;
+    width: 25px;
+    gap: 6px;
+    transition: 0.7s;
+}
+@media screen and (max-width: 425px) {
+    .header__hamburger {
+        display: flex;
+        flex-direction: column;
+        margin-right: 30px;
+    }
+}
+.header__hamburger:hover {
+    opacity: 0.6;
+}

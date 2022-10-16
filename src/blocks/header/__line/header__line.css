@@ -1,0 +1,5 @@
+.header__line {
+    border-top: 3px solid #ffffff;
+    width: 100%;
+    transition: 0.7s;
+}

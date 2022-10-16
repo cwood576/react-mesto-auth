@@ -1,0 +1,13 @@
+.sign-in__link {
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 15px;
+}
+
+@media screen and (max-width: 425px) {
+    .sign-in__link {
+        margin-top: 20px;
+    }
+}

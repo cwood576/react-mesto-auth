@@ -1,0 +1,10 @@
+.header__line_active:nth-child(3) {
+    transform: translateY(-12px) rotateZ(45deg);
+}
+.header__line_active:first-child {
+    transform: translateY(6px) rotateZ(-45deg);
+}
+.header__line_active:nth-child(2) {
+    visibility: hidden;
+    opacity: 0;
+}

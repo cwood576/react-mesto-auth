@@ -1,0 +1,14 @@
+.header__link {
+    color: #ffffff;
+    font-size: clamp(14px, 3vw, 18px);
+    line-height: clamp(17px, 3vw, 22px);
+    text-decoration: none;
+}
+.header__link:visited {
+    color: #ffffff;
+}
+@media screen and (max-width: 425px) {
+    .header__link {
+        margin-right: 30px;
+    }
+}
