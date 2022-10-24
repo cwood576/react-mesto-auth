@@ -30,7 +30,6 @@ function MainPage(props) {
         name: "",
         link: "",
     })
-
     React.useEffect(() => {
         auth.logIn(localStorage.getItem("jwt"))
             .then((res) => {
@@ -98,13 +97,12 @@ function MainPage(props) {
                 setCurrentUser(res)
             })
             .then(() => {
-                event.target.reset()
                 closeAllPopups()
             })
             .catch((err) => console.log(err))
     }
     function handleCardLike(card) {
-        let isLiked = card.likes.some((i) => i._id === currentUser._id)
+        const isLiked = card.likes.some((i) => i._id === currentUser._id)
 
         api.changeLikeCardStatus(card._id, isLiked)
             .then((newCard) => {
@@ -126,9 +124,7 @@ function MainPage(props) {
             .then((res) => {
                 setCards([res, ...cards])
             })
-            // При успешном добавлении карточки, отчищаем инпуты
             .then(() => {
-                event.target.reset()
                 closeAllPopups()
             })
             .catch((err) => console.log(err))

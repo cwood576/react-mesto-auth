@@ -13,14 +13,17 @@ function App() {
     const [isRedirected, setIsRedirected] = React.useState(false)
 
     React.useEffect(() => {
-        auth.logIn(localStorage.getItem("jwt"))
-            .then((res) => {
-                setIsLogged(true)
-            })
-            .catch((err) => {
-                console.log(err)
-                setIsRedirected(true)
-            })
+        if (localStorage.getItem("jwt")) {
+            auth.logIn(localStorage.getItem("jwt"))
+                .then((res) => {
+                    setIsLogged(true)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        } else {
+            setIsRedirected(true)
+        }
     }, [])
 
     return (
@@ -42,23 +45,8 @@ function App() {
                     setEmail={setEmail}
                     loggedIn={isLogged}
                     isRedirected={isRedirected}
-                ></ProtectedRoute>
-                <Route exact path="/">
-                    {isLogged ? (
-                        <>
-                            <MainPage
-                                setIsLogged={setIsLogged}
-                                email={email}
-                                page="loggedIn"
-                                setEmail={setEmail}
-                            />
-                        </>
-                    ) : isRedirected ? (
-                        <Redirect to="/sign-in"></Redirect>
-                    ) : (
-                        ""
-                    )}
-                </Route>
+                    path="/"
+                />
             </Switch>
         </BrowserRouter>
     )
