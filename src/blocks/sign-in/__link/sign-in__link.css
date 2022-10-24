@@ -11,3 +11,6 @@
         margin-top: 20px;
     }
 }
+.sign-in__link:hover {
+    cursor: pointer;
+}

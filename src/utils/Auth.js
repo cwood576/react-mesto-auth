@@ -1,4 +1,4 @@
-export class Api {
+export class Auth {
     constructor({ baseUrl, headers }) {
         this._baseUrl = baseUrl
         this._headers = headers
@@ -9,82 +9,44 @@ export class Api {
         }
         return Promise.reject(`Ошибка: ${res.status}`)
     }
-    getInitialCards() {
-        return fetch(`${this._baseUrl}/cards`, { headers: this._headers }).then(
-            (res) => {
-                return this._getResponseData(res)
-            }
-        )
-    }
-
-    postCard({ title, url }) {
-        return fetch(`${this._baseUrl}/cards`, {
+    signIn({ password, email }) {
+        return fetch(`${this._baseUrl}/signin`, {
             headers: this._headers,
             method: "POST",
             body: JSON.stringify({
-                name: `${title}`,
-                link: `${url}`,
+                password: `${password}`,
+                email: `${email}`,
             }),
         }).then((res) => {
             return this._getResponseData(res)
         })
     }
-    deleteCard(card) {
-        return fetch(`${this._baseUrl}/cards/${card._id}`, {
+    signUp({ password, email }) {
+        return fetch(`${this._baseUrl}/signup`, {
             headers: this._headers,
-            method: "DELETE",
-        }).then((res) => {
-            return this._getResponseData(res)
-        })
-    }
-    updateProfileInfo({ name, description }) {
-        return fetch(`${this._baseUrl}/users/me`, {
-            headers: this._headers,
-            "Content-Type": "application/json",
-            method: "PATCH",
+            method: "POST",
             body: JSON.stringify({
-                name: `${name}`,
-                about: `${description}`,
+                password: `${password}`,
+                email: `${email}`,
             }),
         }).then((res) => {
             return this._getResponseData(res)
         })
     }
-
-    updateAvatar(avatar) {
-        return fetch(`${this._baseUrl}/users/me/avatar`, {
-            headers: this._headers,
-            "Content-Type": "application/json",
-            method: "PATCH",
-            body: JSON.stringify({
-                avatar: `${avatar}`,
-            }),
-        }).then((res) => {
-            return this._getResponseData(res)
-        })
-    }
-
-    getProfileInfo() {
+    logIn(jwt) {
+        const headers = this._headers
+        headers["Authorization"] = `Bearer ${jwt}`
         return fetch(`${this._baseUrl}/users/me`, {
-            headers: this._headers,
-        }).then((res) => {
-            return this._getResponseData(res)
-        })
-    }
-    changeLikeCardStatus(id, isLiked) {
-        return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-            headers: this._headers,
-            method: `${!isLiked ? "PUT" : "DELETE"}`,
+            headers: headers,
         }).then((res) => {
             return this._getResponseData(res)
         })
     }
 }
 const serverInfo = {
-    baseUrl: "https://mesto.nomoreparties.co/v1/cohort-48",
+    baseUrl: "https://auth.nomoreparties.co",
     headers: {
-        authorization: "dde53268-5da2-46cf-9f65-0b885266f0d8",
         "Content-Type": "application/json",
     },
 }
-export const api = new Api(serverInfo)
+export const auth = new Auth(serverInfo)

@@ -7,12 +7,14 @@ import PopupConfirm from "./PopupConfirm"
 import ImagePopup from "../components/ImagePopup"
 import { CurrentUserContext } from "../contexts/CurrentUserContext"
 import { api } from "../utils/Api"
+import { auth } from "../utils/Auth"
 import { CardsContext } from "../contexts/CardsContext"
 import EditProfilePopup from "./EditProfilePopup"
 import EditAvatarPopup from "./EditAvatarPopup"
 import AddPlacePopup from "./AddPlacePopup"
+import Header from "./Header"
 
-function App() {
+function MainPage(props) {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
         React.useState(false)
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false)
@@ -28,6 +30,14 @@ function App() {
         name: "",
         link: "",
     })
+
+    React.useEffect(() => {
+        auth.logIn(localStorage.getItem("jwt"))
+            .then((res) => {
+                props.setEmail(res.data.email)
+            })
+            .catch((err) => console.log(err))
+    }, [])
 
     React.useEffect(() => {
         api.getProfileInfo()
@@ -126,6 +136,11 @@ function App() {
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
+            <Header
+                setIsLogged={props.setIsLogged}
+                email={props.email}
+                page={props.page}
+            />
             <CardsContext.Provider value={cards}>
                 <Main
                     onEditProfile={handleEditProfileClick}
@@ -175,4 +190,4 @@ function App() {
     )
 }
 
-export default App
+export default MainPage
