@@ -45,7 +45,7 @@ function Register() {
                         type="email"
                         name="email"
                         placeholder="Email"
-                        value={values.email}
+                        value={values.email || ""}
                         onChange={handleChange}
                     />
                     <input
@@ -53,7 +53,7 @@ function Register() {
                         type="password"
                         name="password"
                         placeholder="Пароль"
-                        value={values.password}
+                        value={values.password || ""}
                         onChange={handleChange}
                     />
                     <button className="sign-in__button">
